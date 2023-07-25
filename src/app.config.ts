@@ -20,6 +20,7 @@ const configuration = {
   app: {
     port: parseInt(env('PORT', 8000)),
   },
+  cors: { origins: process.env.CORS_ALLOWED_ORIGINS?.split(',') || '*' },
 };
 
 export default () => configuration;
