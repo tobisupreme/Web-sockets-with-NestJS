@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { SocketIoAdapter } from './socket-io-adapter';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -26,6 +27,7 @@ async function bootstrap() {
   const swagDocument = SwaggerModule.createDocument(app, swaggerOptions);
   SwaggerModule.setup('/', app, swagDocument);
 
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   app.useWebSocketAdapter(new SocketIoAdapter(app, configService, origins));
 
   await app.listen(PORT);
