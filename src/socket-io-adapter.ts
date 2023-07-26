@@ -7,6 +7,7 @@ import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { IoAdapter } from '@nestjs/platform-socket.io';
 import { ServerOptions } from 'socket.io';
+import { AuthPayload, SocketWithAuth } from './auth/interfaces';
 import { WsException } from '@nestjs/websockets';
 
 export class SocketIoAdapter extends IoAdapter {
@@ -33,7 +34,7 @@ export class SocketIoAdapter extends IoAdapter {
   }
 
   private createTokenMiddleware = (jwtService: JwtService, logger: Logger) => {
-    return (socket, next) => {
+    return (socket: SocketWithAuth, next) => {
       let [, token] = String(socket.request.headers['authorization']).split(
         /\s+/,
       );
@@ -45,7 +46,7 @@ export class SocketIoAdapter extends IoAdapter {
       }
 
       try {
-        const payload = jwtService.verify(token);
+        const payload: AuthPayload = jwtService.verify(token);
         socket.user = payload;
         next();
       } catch (error) {
