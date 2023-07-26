@@ -21,6 +21,11 @@ const configuration = {
     port: parseInt(env('PORT', 8000)),
   },
   cors: { origins: process.env.CORS_ALLOWED_ORIGINS?.split(',') || '*' },
+  swagger: {
+    title: env.require('SWAGGER_TITLE'),
+    description: env('SWAGGER_DESCRIPTION', 'A NestJS Project'),
+    version: env('SWAGGER_VERSION', '1.0'),
+  },
 };
 
 export default () => configuration;

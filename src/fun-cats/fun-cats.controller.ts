@@ -1,8 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { FunCatsService } from './fun-cats.service';
 import { CreateFunCatDto } from './dto/create-fun-cat.dto';
 import { UpdateFunCatDto } from './dto/update-fun-cat.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Fun Cats')
 @Controller('fun-cats')
 export class FunCatsController {
   constructor(private readonly funCatsService: FunCatsService) {}

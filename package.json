@@ -26,6 +26,7 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/platform-socket.io": "^10.1.2",
+    "@nestjs/swagger": "^7.1.2",
     "@nestjs/websockets": "^10.1.2",
     "dotenv": "^16.3.1",
     "reflect-metadata": "^0.1.13",
