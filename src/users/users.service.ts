@@ -4,6 +4,7 @@ export type User = {
   userId: number;
   username: string;
   password: string;
+  channels?: string[];
 };
 
 @Injectable()
@@ -12,17 +13,18 @@ export class UsersService {
     {
       userId: 1,
       username: 'lola',
-      password: 'anotherSecurePassword1@',
+      password: 'Password1@',
+      channels: ['channel1', 'channel2'],
     },
     {
       userId: 2,
       username: 'precious',
-      password: 'moreSecurePassword1@',
+      password: 'Password1@',
     },
     {
       userId: 3,
       username: 'tunji',
-      password: 'mostSecurePassword1@',
+      password: 'Password1@',
     },
   ];
 
